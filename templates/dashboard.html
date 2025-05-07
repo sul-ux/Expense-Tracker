@@ -5,12 +5,28 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<h2>Category-wise Summary</h2>
-<a href="/">Back</a>
-<ul>
-    {% for row in summary %}
-        <li>{{ row['category'] }}: ₹{{ row['total'] }}</li>
-    {% endfor %}
-</ul>
+<h2>Expense Dashboard</h2>
+<a href="/">Back to List</a> |
+<a href="/logout">Logout</a>
+
+<canvas id="myChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const labels = {{ summary | map(attribute='category') | list | tojson }};
+    const data = {{ summary | map(attribute='total') | list | tojson }};
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Expenses by Category',
+                data: data,
+                backgroundColor: ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff'],
+            }]
+        }
+    });
+</script>
 </body>
 </html>

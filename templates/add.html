@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Expense</title>
+    <title>{% if expense %}Edit{% else %}Add{% endif %} Expense</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<h2>Add Expense</h2>
+<h2>{% if expense %}Edit{% else %}Add{% endif %} Expense</h2>
 <form method="post">
-    <input name="project" placeholder="Project Name" required><br>
-    <input name="category" placeholder="Category" required><br>
-    <input name="amount" placeholder="Amount" type="number" required><br>
-    <input name="description" placeholder="Description"><br>
-    <input name="date" type="date"><br>
-    <button type="submit">Add</button>
+    <input name="project" placeholder="Project Name" required value="{{ expense.project if expense else '' }}"><br>
+    <input name="category" placeholder="Category" required value="{{ expense.category if expense else '' }}"><br>
+    <input name="amount" type="number" placeholder="Amount" required value="{{ expense.amount if expense else '' }}"><br>
+    <input name="description" placeholder="Description" value="{{ expense.description if expense else '' }}"><br>
+    <input name="date" type="date" value="{{ expense.date if expense else '' }}"><br>
+    <button type="submit">{% if expense %}Update{% else %}Add{% endif %}</button>
 </form>
 <a href="/">Back</a>
 </body>

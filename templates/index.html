@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Expenses</title>
+    <title>All Expenses</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <h2>All Expenses</h2>
-<a href="/add">Add Expense</a> | <a href="/dashboard">Dashboard</a>
+<a href="/add">Add Expense</a> |
+<a href="/dashboard">Dashboard</a> |
+<a href="/logout">Logout</a>
+
 <ul>
     {% for exp in expenses %}
-        <li>{{ exp.date }} | {{ exp.project }} | {{ exp.category }} | ₹{{ exp.amount }} | {{ exp.description }}</li>
+        <li>
+            {{ exp.date }} | {{ exp.project }} | {{ exp.category }} | ₹{{ exp.amount }} | {{ exp.description }}
+            [<a href="/edit/{{ exp.id }}">Edit</a>]
+            [<a href="/delete/{{ exp.id }}" onclick="return confirm('Are you sure?')">Delete</a>]
+        </li>
     {% endfor %}
 </ul>
 </body>
