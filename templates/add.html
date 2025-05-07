@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Expense</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>Add Expense</h2>
+<form method="post">
+    <input name="project" placeholder="Project Name" required><br>
+    <input name="category" placeholder="Category" required><br>
+    <input name="amount" placeholder="Amount" type="number" required><br>
+    <input name="description" placeholder="Description"><br>
+    <input name="date" type="date"><br>
+    <button type="submit">Add</button>
+</form>
+<a href="/">Back</a>
+</body>
+</html>

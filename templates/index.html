@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expenses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>All Expenses</h2>
+<a href="/add">Add Expense</a> | <a href="/dashboard">Dashboard</a>
+<ul>
+    {% for exp in expenses %}
+        <li>{{ exp.date }} | {{ exp.project }} | {{ exp.category }} | ₹{{ exp.amount }} | {{ exp.description }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

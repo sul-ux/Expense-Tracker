@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>Category-wise Summary</h2>
+<a href="/">Back</a>
+<ul>
+    {% for row in summary %}
+        <li>{{ row['category'] }}: ₹{{ row['total'] }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
